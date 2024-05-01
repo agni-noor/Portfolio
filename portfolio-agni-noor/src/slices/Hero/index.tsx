@@ -30,7 +30,14 @@ useEffect(()=>{
   {
     x:0,
     opacity:1,
-    rotate:0
+    rotate:0,
+    ease: "elastic.out(1,0.2)",
+    duration: 1,
+    transformOrigin: "left top",
+    stagger:{
+      each:0.1,
+      from:"random",
+    }
   })
 
   },component)
