@@ -13,11 +13,11 @@ export default function Shapes(){
                 <Suspense fallback={null}>
                     <Geometries/>
                     <ContactShadows
-                    position={[0,-3.5,0]}
-                    opacity={0.65}
-                    scale={40}
-                    blur={1}
-                    far={9}
+                        position={[0,-3.5,0]}
+                        opacity={0.65}
+                        scale={40}
+                        blur={1}
+                        far={9}
                     />
                     <Environment preset='studio'/>
 
@@ -54,7 +54,7 @@ function Geometries(){
 
 function Geometry({r, position, geometry, materials}){
     const meshRef = useRef();
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
 
      const startingMaterial = getRandomMaterial();
 
@@ -86,6 +86,22 @@ function Geometry({r, position, geometry, materials}){
         const handlePointerOut =()=>{
             document.body.style.cursor = 'default'
         }
+
+
+        useEffect(()=>{
+            let ctx = gsap.context(()=>{
+                setVisible(true)
+                gsap.from(meshRef.current.scale,{
+                    x:0,
+                    y:0,
+                    z:0,
+                    duration:4,
+                    ease:"elastic.out(1,.3)",
+                    delay:0.3,
+                })
+            });
+            return ()=>ctx.revert()   //cleanup
+        },[])
 
         return (
             <group position={position} ref={meshRef}>
