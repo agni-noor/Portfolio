@@ -27,3 +27,19 @@ export default function Shapes(){
         </div>
     )
 }
+
+function Geometries(){
+    const geometries =[
+        {
+            position:[0,0,0],
+            r:0.3,
+            geometry: new THREE.IcosahedronGeometry(3)
+        }
+    ];
+    const materials =
+    [
+        new THREE.MeshNormalMaterial()
+    ];
+    //Pass to geometry
+}
+
