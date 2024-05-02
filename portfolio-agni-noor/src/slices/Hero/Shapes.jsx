@@ -5,6 +5,7 @@ import {Canvas} from '@react-three/fiber';
 import {ContactShadows, Float, Environment} from '@react-three/drei';
 import {Suspense, useEffect, useRef, useState} from 'react';
 import {gsap} from 'gsap';
+import { metalness, roughness } from 'three/examples/jsm/nodes/Nodes.js';
 
 export default function Shapes(){
     return(
@@ -35,11 +36,66 @@ function Geometries(){
             position:[0,0,0],
             r:0.3,
             geometry: new THREE.IcosahedronGeometry(3)
-        }
+        },
+{
+            position:[.8,-.75,4],
+            r:0.7,
+            geometry: new THREE.CapsuleGeometry(0.5,1,3,6)
+        },
+        {
+            position:[-1.9,2,-4],
+            r:0.6,
+            geometry: new THREE.DodecahedronGeometry(1.5)
+        },
+        {
+            position:[-0.5,-.75,5],
+            r:0.5,
+            geometry: new THREE.TorusGeometry(.6, .25,5,10)
+        },
+        {
+            position:[1.6,2,-4],
+            r:0.7,
+            geometry: new THREE.OctahedronGeometry(1.5) 
+        },
+        {
+            position:[0,2.3,-2],
+            r:0.7,
+            geometry: new THREE.SphereGeometry(1,10,10) 
+        },
+        {
+            
+            position:[-2.5,0,-2],
+            r:0.7,
+            geometry: new THREE.TorusKnotGeometry(1,.3,20,10,5,3) 
+        },
     ];
     const materials =
     [
-        new THREE.MeshNormalMaterial()
+        new THREE.MeshNormalMaterial(),
+        new THREE.MeshStandardMaterial({color:0xc44569, roughness:.5}),
+        new THREE.MeshStandardMaterial({color:0x574b90, roughness:.5}),
+        new THREE.MeshStandardMaterial({color:0xe15f41, roughness:.5}),
+        new THREE.MeshStandardMaterial({color:0x3dc1d3, roughness:.5}),
+        new THREE.MeshStandardMaterial({color:0xf78fb3, roughness:.5}),
+        new THREE.MeshStandardMaterial({
+            color:0xe66767,
+            roughness:.5,
+            metalness:0.5
+        }),
+        new THREE.MeshStandardMaterial({
+            color:0x786fa6,
+            roughness:.5,
+            metalness:0.5
+        }),
+        new THREE.MeshStandardMaterial({
+            color:0x00b894,
+            roughness:0,
+            metalness:0.5
+        }),
+        new THREE.MeshStandardMaterial({
+            color:0xfdcb6e,
+            roughness:0,
+        }),
     ]
     return geometries.map(({position, r, geometry})=>(
         <Geometry
