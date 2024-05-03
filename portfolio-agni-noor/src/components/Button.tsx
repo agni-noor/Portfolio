@@ -1,5 +1,6 @@
 import { KeyTextField, LinkField } from "@prismicio/client"
 import { PrismicNextLink } from "@prismicio/next";
+import { MdArrowOutward } from "react-icons/md";
 import clsx from "clsx";
 
 
@@ -29,7 +30,7 @@ export default function Button({linkField,label,showIcon=true,className}:ButtonP
       </span>
 
       <span className="relative items-center justify-center gap-2">
-        {label} {showIcon && "=>"}
+        {label} {showIcon && <MdArrowOutward className="inline-block"/>}
       </span>
     </PrismicNextLink>
     )
