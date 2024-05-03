@@ -40,27 +40,27 @@ function Geometries(){
 {
             position:[.8,-.75,4],
             r:0.7,
-            geometry: new THREE.CapsuleGeometry(0.5,1,3,6)
+            geometry: new THREE.CapsuleGeometry(0.5,1,10,10)
         },
         {
-            position:[-1.9,2,-4],
+            position:[-1.9,2,-5],
             r:0.6,
             geometry: new THREE.DodecahedronGeometry(1.5)
         },
         {
             position:[-0.5,-.75,5],
             r:0.5,
-            geometry: new THREE.TorusGeometry(.6, .25,5,10)
+            geometry: new THREE.TorusGeometry(.6, .25,20,20)
         },
         {
-            position:[1.6,2,-4],
+            position:[1.6,2,-5],
             r:0.7,
             geometry: new THREE.OctahedronGeometry(1.5) 
         },
         {
-            position:[0,2.3,-2],
+            position:[0,2.3,-4],
             r:0.7,
-            geometry: new THREE.SphereGeometry(1,10,10) 
+            geometry: new THREE.SphereGeometry(1,20,20) 
         },
         {
             
