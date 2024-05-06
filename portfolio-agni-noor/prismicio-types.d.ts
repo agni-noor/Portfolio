@@ -4,6 +4,213 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type AchievementDocumentDataSlicesSlice = TextBlockSlice;
+
+/**
+ * Content for Achievement documents
+ */
+interface AchievementDocumentData {
+  /**
+   * Title field in *Achievement*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievement.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Date field in *Achievement*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievement.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date: prismic.DateField;
+
+  /**
+   * Description field in *Achievement*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievement.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *Achievement*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievement.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<AchievementDocumentDataSlicesSlice> /**
+   * Meta Description field in *Achievement*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: achievement.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Achievement*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievement.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *Achievement*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: achievement.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * Achievement document from Prismic
+ *
+ * - **API ID**: `achievement`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AchievementDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<AchievementDocumentData>,
+    "achievement",
+    Lang
+  >;
+
+type ExperienceDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Experience documents
+ */
+interface ExperienceDocumentData {
+  /**
+   * Title field in *Experience*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experience.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Start Date field in *Experience*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experience.start_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  start_date: prismic.DateField;
+
+  /**
+   * End Date field in *Experience*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experience.end_date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  end_date: prismic.DateField;
+
+  /**
+   * Hover Image field in *Experience*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experience.hover_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hover_image: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Experience*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experience.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ExperienceDocumentDataSlicesSlice> /**
+   * Meta Title field in *Experience*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: experience.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Experience*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: experience.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Experience*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: experience.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Experience document from Prismic
+ *
+ * - **API ID**: `experience`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ExperienceDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ExperienceDocumentData>,
+    "experience",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice = HeroSlice;
 
 /**
@@ -132,6 +339,104 @@ interface PageDocumentData {
  */
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
+type ProjectDocumentDataSlicesSlice = HeroSlice;
+
+/**
+ * Content for Project documents
+ */
+interface ProjectDocumentData {
+  /**
+   * Title field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Date field in *Project*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#date
+   */
+  date: prismic.DateField;
+
+  /**
+   * Hover Image field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.hover_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hover_image: prismic.ImageField<never>;
+
+  /**
+   * Slice Zone field in *Project*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice> /**
+   * Meta Title field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: project.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: project.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Project document from Prismic
+ *
+ * - **API ID**: `project`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProjectDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProjectDocumentData>,
+    "project",
+    Lang
+  >;
 
 /**
  * Item in *Settings → Nav Item*
@@ -277,8 +582,11 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | AchievementDocument
+  | ExperienceDocument
   | HomepageDocument
   | PageDocument
+  | ProjectDocument
   | SettingsDocument;
 
 /**
@@ -583,6 +891,36 @@ export type TechListSlice = prismic.SharedSlice<
   TechListSliceVariation
 >;
 
+/**
+ * Default variation for TextBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *TextBlock*
+ */
+type TextBlockSliceVariation = TextBlockSliceDefault;
+
+/**
+ * TextBlock Shared Slice
+ *
+ * - **API ID**: `text_block`
+ * - **Description**: TextBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextBlockSlice = prismic.SharedSlice<
+  "text_block",
+  TextBlockSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -593,12 +931,21 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      AchievementDocument,
+      AchievementDocumentData,
+      AchievementDocumentDataSlicesSlice,
+      ExperienceDocument,
+      ExperienceDocumentData,
+      ExperienceDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
+      ProjectDocument,
+      ProjectDocumentData,
+      ProjectDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavItemItem,
@@ -620,6 +967,9 @@ declare module "@prismicio/client" {
       TechListSliceDefaultItem,
       TechListSliceVariation,
       TechListSliceDefault,
+      TextBlockSlice,
+      TextBlockSliceVariation,
+      TextBlockSliceDefault,
     };
   }
 }
