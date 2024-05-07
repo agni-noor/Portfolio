@@ -1,7 +1,43 @@
+import { Content } from '@prismicio/client'
 import React from 'react'
 
-export default function ContentList() {
+
+
+type ContentListProps ={
+    items:Content.ExperienceDocument[] | Content.ProjectDocument[];
+    contentType:Content.ContentIndexSlice["primary"]["content_type"];
+    fallBackItemImage:Content.ContentIndexSlice["primary"]["fallback_item_image"];
+    viewMoreText :Content.ContentIndexSlice["primary"]["view_more_text"];
+};
+
+export default function ContentList({
+    items, 
+    contentType, 
+    fallBackItemImage, 
+    viewMoreText = "Read More"
+}:ContentListProps) 
+{
   return (
-    <div>ContentList</div>
+    <div>
+
+        <ul>
+            {items.map((item,index)=>(
+
+            <li key={index}>
+                <a href="">
+                    <div>
+                        <span>{item.data.title}</span>
+                        <div>
+                            {item.tags.map((tag,index)=>(
+                                <span key={index}>{tag}</span>
+                            ))}
+                        </div>
+                    </div>
+                    <span>{viewMoreText}</span>
+                </a>
+            </li>
+            ))}
+        </ul>
+    </div>
   )
 }
