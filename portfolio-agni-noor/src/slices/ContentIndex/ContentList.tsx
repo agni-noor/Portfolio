@@ -27,7 +27,57 @@ export default function ContentList({
 {
 
     const component = useRef(null);
+    const revealRef = useRef(null)
     const [currentItem, setCurrentItem] = useState<null | number>(null);
+
+    const lastMousePos = useRef({x:0,y:0})
+
+
+
+    const urlPrefix = contentType ==='Experience'?"/experience":'/project'
+    
+    
+    useEffect(()=>{
+        const handleMouseMove = (e:MouseEvent)=>{
+            const mousePos= {x:e.clientX, y:e.clientY+window.scrollY}
+
+            //Calculate speed and direction
+
+
+            const speed = Math.sqrt(Math.pow(mousePos.x - lastMousePos.current.x,2));
+
+            let ctx = gsap.context(()=>{
+
+                if(currentItem!==null){
+
+                    const maxY = window.scrollY + window.innerHeight - 350;
+                    const maxX = window.innerWidth - 250;
+    
+                    gsap.to(revealRef.current, {
+                        x: gsap.utils.clamp(0, maxX, mousePos.x - 110),
+                        y: gsap.utils.clamp(0, maxY, mousePos.y - 160),
+                        rotation: speed * (mousePos.x > lastMousePos.current.x ? 1 : -1), // Apply rotation based on speed and direction
+                        ease: "back.out(2)",
+                        duration: 1.3,
+                    });
+
+                }
+                lastMousePos.current = mousePos;
+                return ()=>ctx.revert()
+    
+                
+            },component)
+
+        };
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => {
+            window.removeEventListener("mousemove", handleMouseMove);
+        };
+
+    },[currentItem]);
+
+
+
     const contentImages = items.map((item) => {
         const image = isFilled.image(item.data.hover_image)
         ? item.data.hover_image
@@ -40,7 +90,9 @@ export default function ContentList({
         });
     });
     
-const urlPrefix = contentType ==='Experience'?"/experience":'/project'
+
+
+
 
 
 const onMouseEnter = (index: number) => {
@@ -207,6 +259,7 @@ const onMouseEnter = (index: number) => {
 style={{
      backgroundImage: currentItem !== null ? `url(${contentImages[currentItem]})` : "",
 }}
+ref={revealRef}
 >
 
 
