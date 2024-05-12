@@ -22,6 +22,7 @@ const ContentIndex = async ({ slice }: ContentIndexProps): Promise<JSX.Element> 
 
   const contentType = slice.primary.content_type || "Experience"
 
+
   const items = contentType==="Experience"? experiences :projects
 
   return (
@@ -31,6 +32,7 @@ const ContentIndex = async ({ slice }: ContentIndexProps): Promise<JSX.Element> 
     >
      <Heading size="xl" className="mb-8">
       {slice.primary.heading}
+
      </Heading>
       {isFilled.richText(slice.primary.description) &&
         (<div className="prose prose-xl prose-invert mb-10">

@@ -696,7 +696,7 @@ export interface ContentIndexSliceDefaultPrimary {
    * - **API ID Path**: content_index.primary.content_type
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  content_type: prismic.SelectField<"Experience" | "Project" | "Achievements">;
+  content_type: prismic.SelectField<"Experience" | "Project">;
 
   /**
    * Description field in *ContentIndex → Primary*

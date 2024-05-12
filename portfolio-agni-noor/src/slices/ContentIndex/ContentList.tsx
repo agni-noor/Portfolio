@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MdArrowOutward } from "react-icons/md";
 import { Content } from "@prismicio/client";
 import Link from "next/link";
+import Page from "@/app/page";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,6 +29,7 @@ export default function ContentList({
 
     const component = useRef(null);
     const revealRef = useRef(null)
+    const itemsRef = useRef<Array<HTMLLIElement | null>>([])
     const [currentItem, setCurrentItem] = useState<null | number>(null);
 
     const lastMousePos = useRef({x:0,y:0})
@@ -35,6 +37,39 @@ export default function ContentList({
 
 
     const urlPrefix = contentType ==='Experience'?"/experience":'/project'
+
+   useEffect(() => {
+    // Animate list-items in with a stagger
+    let ctx = gsap.context(() => {
+      itemsRef.current.forEach((item) => {
+        gsap.fromTo(
+          item,
+          {
+            opacity: 0,
+            y: 20,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.3,
+            ease: "elastic.out(1,0.3)",
+            stagger: 0.2,
+            scrollTrigger: {
+              trigger: item,
+              start: "top bottom-=100px",
+              end: "bottom center",
+              toggleActions: "play none none none",
+            },
+          },
+        );
+      });
+
+      return () => ctx.revert(); // cleanup!
+    }, component);
+  }, []);
+
+
+
     
     
     useEffect(()=>{
@@ -59,6 +94,7 @@ export default function ContentList({
                         rotation: speed * (mousePos.x > lastMousePos.current.x ? 1 : -1), // Apply rotation based on speed and direction
                         ease: "back.out(2)",
                         duration: 1.3,
+                        opacity:1
                     });
 
                 }
@@ -180,36 +216,14 @@ const onMouseEnter = (index: number) => {
 //     };
 //   }, [hovering, currentItem]);
 
-//   const onMouseEnter = (index: number) => {
-//     setCurrentItem(index);
-//     if (!hovering) setHovering(true);
-//   };
-
-//   const onMouseLeave = () => {
-//     setHovering(false);
-//     setCurrentItem(null);
-//   };
-
-//   const contentImages = items.map((item) => {
-//     const image = isFilled.image(item.data.hover_image)
-//       ? item.data.hover_image
-//       : fallBackItemImage;
-//     return asImageSrc(image, {
-//       fit: "crop",
-//       w: 220,
-//       h: 320,
-//       exp: -10,
-//     });
-//   });
-
-  // Preload images
-//   useEffect(() => {
-//     contentImages.forEach((url) => {
-//       if (!url) return;
-//       const img = new Image();
-//       img.src = url;
-//     });
-//   }, [contentImages]);
+  //Preload images
+  useEffect(() => {
+    contentImages.forEach((url) => {
+      if (!url) return;
+      const img = new Image();
+      img.src = url;
+    });
+  }, [contentImages]);
 
 
 
@@ -227,8 +241,10 @@ const onMouseEnter = (index: number) => {
                     
                     
                     <li
-                     key={index} className='list-item opacity-0f'
+                     key={index} 
+                     className='list-item opacity-0f'
                     onMouseEnter={() => onMouseEnter(index)}
+                    ref={(el)=>(itemsRef.current[index]=el)}
                     >
 
 
