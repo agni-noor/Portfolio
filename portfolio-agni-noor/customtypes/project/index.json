@@ -39,7 +39,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "hero": {
+            "text_block": {
               "type": "SharedSlice"
             }
           }

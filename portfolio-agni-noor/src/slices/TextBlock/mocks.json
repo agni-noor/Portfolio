@@ -2,7 +2,19 @@
 	{
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
-		"primary": {},
+		"primary": {
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Pariatur duis fugiat officia aliqua officia ullamco consequat irure reprehenderit sunt. Laborum dolore exercitation fugiat Lorem ea anim culpa anim. Reprehenderit deserunt do duis reprehenderit ullamco."
+						}
+					}
+				]
+			}
+		},
 		"items": []
 	}
 ]
