@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+
 import { SliceZone } from "@prismicio/react";
 
 import { components } from "@/slices";
@@ -41,10 +41,15 @@ export default function ContentBody({page}:{
             ))}
         </div>
         <p className="mt-8 border-b border-slate-600 text-xl font-medium text-slate-300">{formattedDate}</p>
-        <div className="prose prose-lg prose-invert mt-12 w-full max-w-none md:mt-20">
 
-      <SliceZone slices={page.data.slices} components={components} />
+        <div className="prose prose-lg prose-invert mt-12 w-full max-w-none md:mt-20">
+         <div className="grid gap-x-8 gap-y-6 md:grid-cols-[2fr,1fr]">
+
+                <SliceZone slices={page.data.slices} components={components} />
+
+         </div>
         </div>
+  
     </div>
 
   </Bounded>
