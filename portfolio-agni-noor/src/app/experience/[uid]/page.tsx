@@ -4,7 +4,7 @@ import { SliceZone } from "@prismicio/react";
 
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
-import ContentBody from "@/components/ContentBody";
+import ContentBodyEx from "@/components/ContentBodyEx";
 
 type Params = { uid: string };
 
@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: Params }) {
     .catch(() => notFound());
 
   return (
-    <ContentBody page={page}/>
+    <ContentBodyEx page={page}/>
   );
 }
 

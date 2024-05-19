@@ -277,6 +277,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | AchievementsSlice
   | ContentIndexSlice
   | TechListSlice
   | BiographySlice;
@@ -588,6 +589,96 @@ export type AllDocumentTypes =
   | PageDocument
   | ProjectDocument
   | SettingsDocument;
+
+/**
+ * Primary content in *Achievements → Primary*
+ */
+export interface AchievementsSliceDefaultPrimary {
+  /**
+   * Heading field in *Achievements → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievements.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Achievements → Items*
+ */
+export interface AchievementsSliceDefaultItem {
+  /**
+   * Title field in *Achievements → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievements.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Time Period field in *Achievements → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievements.items[].time_period
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  time_period: prismic.KeyTextField;
+
+  /**
+   * Institution field in *Achievements → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievements.items[].institution
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  institution: prismic.KeyTextField;
+
+  /**
+   * Description field in *Achievements → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: achievements.items[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Achievements Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AchievementsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AchievementsSliceDefaultPrimary>,
+  Simplify<AchievementsSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Achievements*
+ */
+type AchievementsSliceVariation = AchievementsSliceDefault;
+
+/**
+ * Achievements Shared Slice
+ *
+ * - **API ID**: `achievements`
+ * - **Description**: Achievements
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AchievementsSlice = prismic.SharedSlice<
+  "achievements",
+  AchievementsSliceVariation
+>;
 
 /**
  * Primary content in *Biography → Primary*
@@ -1010,6 +1101,11 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataNavItemItem,
       AllDocumentTypes,
+      AchievementsSlice,
+      AchievementsSliceDefaultPrimary,
+      AchievementsSliceDefaultItem,
+      AchievementsSliceVariation,
+      AchievementsSliceDefault,
       BiographySlice,
       BiographySliceDefaultPrimary,
       BiographySliceVariation,

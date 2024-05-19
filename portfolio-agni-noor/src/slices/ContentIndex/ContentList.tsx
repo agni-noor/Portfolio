@@ -166,7 +166,7 @@ const onMouseEnter = (index: number) => {
                     
                     <li
                      key={index} 
-                     className='list-item opacity-0f'
+                     className='list-item opacity-0'
                     onMouseEnter={() => onMouseEnter(index)}
                     ref={(el)=>(itemsRef.current[index]=el)}
                     >

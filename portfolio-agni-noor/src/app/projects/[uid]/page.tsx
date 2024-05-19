@@ -7,7 +7,7 @@ import { components } from "@/slices";
 import Bounded from "@/components/Bounded";
 import Heading from "@/components/Heading";
 import { DateField, isFilled } from "@prismicio/client";
-import ContentBody from "@/components/ContentBody";
+import ContentBodyProject from "@/components/ContentBodyProject";
 
 type Params = { uid: string };
 
@@ -21,7 +21,7 @@ export default async function Page({ params }: { params: Params }) {
 
 
   return (
-<ContentBody page={page}/>
+<ContentBodyProject page={page}/>
 );
 }
 

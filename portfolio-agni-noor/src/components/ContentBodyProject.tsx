@@ -8,8 +8,8 @@ import { Content, DateField, isFilled } from "@prismicio/client";
 
 
 
-export default function ContentBody({page}:{
-    page:Content.ProjectDocument | Content.ExperienceDocument;
+export default function ContentBodyProject({page}:{
+    page:Content.ProjectDocument;
 }) {
 
 
@@ -29,6 +29,8 @@ export default function ContentBody({page}:{
     }
 
     const formattedDate= formatDate(page.data.date)
+
+
 
 
   return (
