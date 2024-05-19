@@ -36,7 +36,7 @@ export default function ContentList({
 
 
 
-    const urlPrefix = contentType ==='Experience'?"/experience":'/project'
+    const urlPrefix = contentType ==='Experience'?"/experience":'/projects'
 
    useEffect(() => {
     // Animate list-items in with a stagger
