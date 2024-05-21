@@ -10,16 +10,16 @@ const urbanist = Urbanist({ subsets: ["latin"] });
 
 
 
-export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient();
-  const settings = await client.getSingle("settings");
+// export async function generateMetadata(): Promise<Metadata> {
+//   const client = createClient();
+//   const settings = await client.getSingle("settings");
 
-  return {
-    title: settings.data.meta_title,
-    description: settings.data.meta_description,
+//   return {
+//     title: settings.data.meta_title,
+//     description: settings.data.meta_description,
 
-  };
-}
+//   };
+// }
 export default function RootLayout({
   children,
 }: Readonly<{
